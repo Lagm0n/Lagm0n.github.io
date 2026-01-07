@@ -17,6 +17,8 @@
             line-height: 1.6;
             color: #334155;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -27,13 +29,12 @@
 
         /* Header */
         header {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid #e2e8f0;
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
         }
 
         nav {
@@ -44,7 +45,7 @@
         }
 
         .logo img {
-            height: 60px;
+            height: 64px;
             width: auto;
         }
 
@@ -72,11 +73,12 @@
             border: none;
             cursor: pointer;
             padding: 0.5rem;
+            color: #475569;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: #0f172a;
             color: white;
             padding: 6rem 1rem;
             text-align: center;
@@ -114,10 +116,11 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3.75rem);
             font-weight: 700;
             margin-bottom: 1rem;
             line-height: 1.2;
+            letter-spacing: -0.025em;
         }
 
         .hero-highlight {
@@ -125,12 +128,13 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
             color: #cbd5e1;
             margin-bottom: 2rem;
             max-width: 42rem;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.75;
         }
 
         .hero-subtitle {
@@ -157,6 +161,7 @@
             transition: all 0.3s;
             min-height: 52px;
             font-size: 1rem;
+            justify-content: center;
         }
 
         .btn-kakao {
@@ -199,84 +204,429 @@
             color: #60a5fa;
         }
 
-        /* Section */
-        .section {
-            padding: 5rem 1rem;
-        }
-
-        .section-gray {
-            background: #f8fafc;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 3rem;
-        }
-
-        /* Cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
+        /* Lawyer Profile Section */
+        .lawyer-profile {
+            padding: 2.5rem 1rem;
             background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-            transition: all 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .profile-image {
+            flex-shrink: 0;
+        }
+
+        .profile-image img {
+            width: 12rem;
+            height: 12rem;
+            border-radius: 1rem;
+            object-fit: cover;
+            object-position: top;
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
+        .profile-info {
+            flex: 1;
+            text-align: center;
+            width: 100%;
+        }
+
+        .profile-info h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .detail-section h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-section li {
+            color: #475569;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .icon-svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #3b82f6;
+        }
+
+        /* Fraud Types Carousel */
+        .carousel-section {
+            padding: 4rem 0;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .carousel-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .carousel-badge {
+            display: inline-block;
+            padding: 0.25rem 1rem;
             margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fca5a5;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 9999px;
+        }
+
+        .carousel-header h2 {
+            font-size: clamp(1.875rem, 4vw, 2.25rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-header .highlight {
+            color: #ef4444;
+        }
+
+        .carousel-header p {
+            color: #94a3b8;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-track:active {
+            cursor: grabbing;
+        }
+
+        .fraud-card {
+            flex-shrink: 0;
+            width: 18.75rem;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.5s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .fraud-card:hover {
+            border-color: #64748b;
+            background: rgba(30, 41, 59, 0.8);
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-gradient {
+            height: 0.375rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-icon {
+            display: inline-flex;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
         }
 
         .card-title {
             font-size: 1.25rem;
             font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+            transition: color 0.3s;
+        }
+
+        .fraud-card:hover .card-title {
+            color: #fca5a5;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-family: monospace;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-stats {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fca5a5;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .card-arrow {
+            color: #64748b;
+            transition: all 0.3s;
+        }
+
+        .fraud-card:hover .card-arrow {
+            color: white;
+            transform: translateX(0.25rem);
+        }
+
+        .carousel-hint {
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .hint-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 3rem 1rem;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
             color: #0f172a;
             margin-bottom: 0.75rem;
         }
 
-        .card-text {
+        .section-header p {
             color: #64748b;
+        }
+
+        .search-box {
+            max-width: 42rem;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            padding-right: 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 1rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .post-card:hover {
+            transform: translateY(-0.25rem);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .post-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .post-badge {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+        }
+
+        .post-date {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .post-body {
+            padding: 0 1rem 1rem;
+        }
+
+        .post-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-excerpt {
+            font-size: 0.875rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Rehabilitation Banner */
+        .rehab-banner {
+            padding: 3rem 1rem;
+            background: linear-gradient(to right, #2563eb, #1e40af);
+        }
+
+        .banner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .banner-text h2 {
+            font-size: clamp(1.25rem, 3vw, 1.875rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .banner-text p {
+            color: #bfdbfe;
+            font-size: clamp(0.875rem, 1.5vw, 1.125rem);
             line-height: 1.75;
         }
 
-        /* CTA Banner */
-        .cta-banner {
-            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        .banner-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .btn-white {
+            background: white;
+            color: #1d4ed8;
+        }
+
+        .btn-white:hover {
+            background: #eff6ff;
+        }
+
+        .btn-outline {
+            background: #1d4ed8;
             color: white;
-            padding: 4rem 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: #1e40af;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 1rem;
             text-align: center;
-            border-radius: 1.5rem;
-            margin: 3rem 0;
         }
 
-        .cta-banner h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-banner p {
-            color: #bfdbfe;
-            margin-bottom: 2rem;
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
         }
 
         /* Mobile Floating CTA */
@@ -296,50 +646,85 @@
 
         .floating-cta .btn {
             flex: 1;
-            justify-content: center;
             padding: 0.75rem 1rem;
+            font-size: 0.875rem;
         }
 
-        /* Footer */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
+        /* Gradients */
+        .gradient-pink { background: linear-gradient(to bottom right, #ec4899, #e11d48); }
+        .gradient-yellow { background: linear-gradient(to bottom right, #eab308, #d97706); }
+        .gradient-green { background: linear-gradient(to bottom right, #10b981, #059669); }
+        .gradient-red { background: linear-gradient(to bottom right, #dc2626, #b91c1c); }
+        .gradient-orange { background: linear-gradient(to bottom right, #f97316, #d97706); }
+        .gradient-violet { background: linear-gradient(to bottom right, #8b5cf6, #7c3aed); }
+        .gradient-cyan { background: linear-gradient(to bottom right, #06b6d4, #0891b2); }
+        .gradient-blue { background: linear-gradient(to bottom right, #2563eb, #1d4ed8); }
+        .gradient-indigo { background: linear-gradient(to bottom right, #6366f1, #4f46e5); }
+        .gradient-amber { background: linear-gradient(to bottom right, #f59e0b, #eab308); }
+        .gradient-teal { background: linear-gradient(to bottom right, #14b8a6, #10b981); }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (min-width: 640px) {
+            .banner-buttons {
+                flex-direction: row;
+                width: auto;
+            }
+
+            .profile-image img {
+                width: 16rem;
+                height: 16rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .lawyer-profile {
+                padding: 4rem 1rem;
+            }
+
+            .profile-container {
+                flex-direction: row;
+                gap: 4rem;
+            }
+
+            .profile-info {
+                text-align: left;
+            }
+
+            .profile-details {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .profile-image img {
+                width: 18rem;
+                height: 18rem;
+            }
+
+            .banner-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .profile-details {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .profile-image img {
+                width: 20rem;
+                height: 20rem;
+            }
+        }
+
+        @media (max-width: 767px) {
             .nav-menu {
                 display: none;
             }
 
             .mobile-menu-btn {
                 display: block;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.125rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .section-title {
-                font-size: 1.875rem;
             }
 
             .floating-cta {
@@ -354,8 +739,7 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <img src="logo.png" alt="법무법인 윤빛" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span style="display:none; font-size: 1.5rem; font-weight: bold; color: #2563eb;">법무법인 윤빛</span>
+                    <img src="logo.png" alt="법무법인 윤빛">
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home">홈</a></li>
@@ -364,9 +748,9 @@
                     <li><a href="#contact">상담문의</a></li>
                 </ul>
                 <button class="mobile-menu-btn">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
@@ -425,95 +809,376 @@
         </div>
     </section>
 
-    <!-- Fraud Types Section -->
-    <section id="fraud" class="section section-gray">
+    <!-- Lawyer Profile Section -->
+    <section class="lawyer-profile">
         <div class="container">
-            <h2 class="section-title">사기 피해 유형</h2>
-            <p class="section-subtitle">피해 유형별 전문적인 법률 대응을 제공합니다</p>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">💕</div>
+            <div class="profile-container">
+                <div class="profile-image">
+                    <img src="lawyer-profile.jpg" alt="윤수빈 변호사">
+                </div>
+                <div class="profile-info">
+                    <h2>윤수빈 변호사</h2>
+                    <p class="profile-title">법무법인 윤빛 대표변호사</p>
+                    <div class="profile-details">
+                        <div class="detail-section">
+                            <h3>
+                                <svg class="icon-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                </svg>
+                                학력
+                            </h3>
+                            <ul>
+                                <li>성균관대학교 경영학과</li>
+                                <li>중앙대학교 법학전문대학원</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h3>
+                                <svg class="icon-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                경력
+                            </h3>
+                            <ul>
+                                <li>법무법인 클라스 변호사</li>
+                                <li>안동교육청 학교폭력 전담 변호사</li>
+                                <li>변호사 윤수빈 법률사무소</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h3>
+                                <svg class="icon-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                </svg>
+                                주요 활동
+                            </h3>
+                            <ul>
+                                <li>국토부 전세사기 피해지원팀 소속</li>
+                                <li>경상북도의회 자문 변호사</li>
+                                <li>(현)안동시, (전)청송군 자문 변호사</li>
+                                <li>6개 시군 학교폭력심의위원회 위원</li>
+                                <li>중앙행정심판위원회 국선대리인</li>
+                                <li>대법원 국선변호인</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fraud Types Carousel -->
+    <section id="fraud" class="carousel-section">
+        <div class="carousel-header">
+            <span class="carousel-badge">사기피해 유형</span>
+            <h2>이런 피해, 저희가 <span class="highlight">해결</span>합니다</h2>
+            <p>다양한 유형의 사기 피해에 대응하는 법률 서비스를 제공합니다.<br class="hidden sm:block">유형을 클릭하면 관련 정보를 확인할 수 있습니다.</p>
+        </div>
+
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Romance Scam -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-pink"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-pink">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                    </div>
                     <h3 class="card-title">로맨스스캠</h3>
-                    <p class="card-text">국제 로맨스스캠, 데이팅앱 사기 등 감정을 악용한 사기 피해 구제</p>
+                    <p class="card-subtitle">Romance Scam</p>
+                    <p class="card-description">SNS, 소개팅앱 통한 연애빙자 금전 사기 피해</p>
+                    <div class="card-footer">
+                        <span class="card-stats">20-30대 피해 집중</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💰</div>
-                    <h3 class="card-title">투자사기</h3>
-                    <p class="card-text">코인, 주식, 선물 등 투자 사기 피해 회복 및 법적 대응</p>
+            </a>
+
+            <!-- Crypto Reading -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-yellow"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-yellow">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">코인 리딩방</h3>
+                    <p class="card-subtitle">Crypto Reading Room</p>
+                    <p class="card-description">코인 투자 리딩방, 가짜 수익 인증, 고수익 보장 사기</p>
+                    <div class="card-footer">
+                        <span class="card-stats">고액 피해 다수</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📱</div>
-                    <h3 class="card-title">보이스피싱</h3>
-                    <p class="card-text">전화·문자 금융사기, 정부기관 사칭 등 보이스피싱 피해 구제</p>
+            </a>
+
+            <!-- Stock Reading -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-green"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-green">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">주식 리딩방</h3>
+                    <p class="card-subtitle">Stock Reading Room</p>
+                    <p class="card-description">주식 투자 리딩방, 미공개 정보 빙자, 작전주 사기</p>
+                    <div class="card-footer">
+                        <span class="card-stats">평균 피해 3,000만원+</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🏠</div>
-                    <h3 class="card-title">전세사기</h3>
-                    <p class="card-text">깡통전세, 이중계약 등 전세 관련 사기 피해 법률 지원</p>
+            </a>
+
+            <!-- Ponzi -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-red"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-red">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">폰지</h3>
+                    <p class="card-subtitle">Ponzi Scheme</p>
+                    <p class="card-description">다단계식 투자사기, 원금 보장 빙자, 피라미드 구조</p>
+                    <div class="card-footer">
+                        <span class="card-stats">대규모 집단 피해</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">⚠️</div>
-                    <h3 class="card-title">폰지사기</h3>
-                    <p class="card-text">다단계 투자사기, 폰지스킴 등 조직적 사기 피해 대응</p>
+            </a>
+
+            <!-- Investment -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-orange"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-orange">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">투자</h3>
+                    <p class="card-subtitle">Investment Fraud</p>
+                    <p class="card-description">고수익 보장 투자, 원금 보장 빙자 사기 피해</p>
+                    <div class="card-footer">
+                        <span class="card-stats">평균 피해액 3,200만원</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💼</div>
+            </a>
+
+            <!-- Side Job -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-violet"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-violet">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387" />
+                        </svg>
+                    </div>
                     <h3 class="card-title">부업/팀미션</h3>
-                    <p class="card-text">재택 부업 사기, 팀미션 사기 등 구직 관련 사기 피해 구제</p>
+                    <p class="card-subtitle">Side Job Scam</p>
+                    <p class="card-description">부업 빙자 선입금 요구, 팀미션 사기, 재택근무 사기</p>
+                    <div class="card-footer">
+                        <span class="card-stats">청년층 피해 급증</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
+            </a>
+
+            <!-- More cards... 5 more -->
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-cyan"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-cyan">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">거래소 사칭</h3>
+                    <p class="card-subtitle">Exchange Impersonation</p>
+                    <p class="card-description">가짜 거래소, 거래소 직원 사칭, 출금 수수료 빙자</p>
+                    <div class="card-footer">
+                        <span class="card-stats">가짜 사이트 주의</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-blue"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-blue">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">해외선물</h3>
+                    <p class="card-subtitle">Overseas Futures</p>
+                    <p class="card-description">해외선물 투자 빙자, 불법 FX마진, 리딩 사기</p>
+                    <div class="card-footer">
+                        <span class="card-stats">고액 피해 빈발</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-indigo"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-indigo">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">비상장 주식</h3>
+                    <p class="card-subtitle">Unlisted Stock</p>
+                    <p class="card-description">비상장주식 투자, 상장 빙자, 허위 기업 정보</p>
+                    <div class="card-footer">
+                        <span class="card-stats">상장 사기 주의</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-amber"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-amber">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">비상장 코인</h3>
+                    <p class="card-subtitle">Unlisted Crypto</p>
+                    <p class="card-description">신규 코인 투자, 상장 예정 빙자, 스캠 코인 피해</p>
+                    <div class="card-footer">
+                        <span class="card-stats">신규 코인 주의</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="fraud-card">
+                <div class="card-gradient gradient-teal"></div>
+                <div class="card-content">
+                    <div class="card-icon gradient-teal">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">공모주</h3>
+                    <p class="card-subtitle">IPO Scam</p>
+                    <p class="card-description">공모주 배정 빙자, 가짜 증권사, 선입금 사기</p>
+                    <div class="card-footer">
+                        <span class="card-stats">공모 사기 주의</span>
+                        <svg class="card-arrow" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="carousel-hint">
+            <svg class="hint-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            <span>마우스를 올리면 멈춤 · 클릭하면 상세 정보</span>
+            <svg class="hint-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>사기 피해 · 회생/파산 정보</h2>
+                <p>피해 유형별 대처 방법과 회복 절차를 확인하세요</p>
+            </div>
+
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="검색어를 입력하세요 (예: 보이스피싱, 개인회생)">
+                <svg class="search-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+
+            <div class="post-grid">
+                <a href="#" class="post-card">
+                    <div class="post-header">
+                        <span class="post-badge" style="background: rgba(236, 72, 153, 0.1); color: #ec4899;">로맨스스캠</span>
+                        <span class="post-date">2026.01.05</span>
+                    </div>
+                    <div class="post-body">
+                        <h3 class="post-title">로맨스스캠 피해 대응 가이드</h3>
+                        <p class="post-excerpt">SNS와 데이팅앱을 통한 로맨스스캠 피해가 급증하고 있습니다. 골든타임 내 신속한 대응이 중요합니다...</p>
+                    </div>
+                </a>
+
+                <a href="#" class="post-card">
+                    <div class="post-header">
+                        <span class="post-badge" style="background: rgba(234, 179, 8, 0.1); color: #eab308;">코인 리딩방</span>
+                        <span class="post-date">2026.01.03</span>
+                    </div>
+                    <div class="post-body">
+                        <h3 class="post-title">코인 리딩방 사기 피해 구제 방법</h3>
+                        <p class="post-excerpt">가짜 수익 인증으로 속이는 코인 리딩방 사기. 증거 확보와 법적 대응 절차를 안내합니다...</p>
+                    </div>
+                </a>
+
+                <a href="#" class="post-card">
+                    <div class="post-header">
+                        <span class="post-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">개인회생</span>
+                        <span class="post-date">2026.01.01</span>
+                    </div>
+                    <div class="post-body">
+                        <h3 class="post-title">개인회생 신청 조건과 절차</h3>
+                        <p class="post-excerpt">최대 90% 채무 감면이 가능한 개인회생. 신청 조건, 필요 서류, 절차를 상세히 안내합니다...</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Rehabilitation Section -->
-    <section id="rehabilitation" class="section">
+    <!-- Rehabilitation Banner -->
+    <section id="rehabilitation" class="rehab-banner">
         <div class="container">
-            <h2 class="section-title">개인회생 · 파산</h2>
-            <p class="section-subtitle">새로운 출발을 위한 법적 솔루션을 제공합니다</p>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">📋</div>
-                    <h3 class="card-title">개인회생</h3>
-                    <p class="card-text">채무 부담을 줄이고 5년 내 재정 재건. 최대 90% 채무 감면 가능</p>
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h2>빚 문제로 힘드신가요?</h2>
+                    <p>개인회생 · 파산으로 새 출발하세요.<br>최대 90%까지 채무 탕감이 가능합니다.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">✅</div>
-                    <h3 class="card-title">개인파산</h3>
-                    <p class="card-text">회생 불가능한 경우 합법적 절차를 통한 면책 결정 지원</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">⚖️</div>
-                    <h3 class="card-title">민사소송</h3>
-                    <p class="card-text">채권 추심, 손해배상, 계약 분쟁 등 민사 소송 대리</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🔒</div>
-                    <h3 class="card-title">형사변론</h3>
-                    <p class="card-text">사기, 횡령, 배임 등 경제 범죄 형사 변론 및 피해자 지원</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Banner -->
-    <section class="section section-gray">
-        <div class="container">
-            <div class="cta-banner">
-                <h2>지금 바로 상담받으세요</h2>
-                <p>전화 또는 카카오톡으로 무료 상담이 가능합니다</p>
-                <div class="cta-buttons">
-                    <a href="tel:02-1234-5678" class="btn btn-phone">
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        02-1234-5678
-                    </a>
-                    <a href="https://open.kakao.com/o/skyDGF6h" target="_blank" class="btn btn-kakao">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.65 1.734 4.974 4.336 6.324-.136.478-.878 3.075-.91 3.299 0 0-.018.178.084.246.102.067.249.013.249.013.328-.045 3.799-2.494 4.399-2.923.592.083 1.206.127 1.842.127 5.523 0 10-3.463 10-7.691S17.523 3 12 3z" />
-                        </svg>
-                        카카오톡 상담
-                    </a>
+                <div class="banner-buttons">
+                    <a href="#contact" class="btn btn-white">회생 상담 신청하기</a>
+                    <a href="#rehabilitation" class="btn btn-outline">회생/파산 알아보기</a>
                 </div>
             </div>
         </div>
@@ -543,5 +1208,31 @@
             카톡
         </a>
     </div>
+
+    <script>
+        // Auto-scroll carousel
+        const track = document.getElementById('carouselTrack');
+        let isPaused = false;
+        let scrollPos = 0;
+        const speed = 0.5;
+
+        function autoScroll() {
+            if (!isPaused && track) {
+                scrollPos += speed;
+                if (scrollPos >= track.scrollWidth / 2) {
+                    scrollPos = 0;
+                }
+                track.scrollLeft = scrollPos;
+            }
+            requestAnimationFrame(autoScroll);
+        }
+
+        track.addEventListener('mouseenter', () => isPaused = true);
+        track.addEventListener('mouseleave', () => isPaused = false);
+        track.addEventListener('touchstart', () => isPaused = true);
+        track.addEventListener('touchend', () => isPaused = false);
+
+        autoScroll();
+    </script>
 </body>
 </html>
